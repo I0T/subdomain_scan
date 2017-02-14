@@ -21,10 +21,9 @@ def get_ip(url):
         url_and_ip = '%s %s' % (url, ip)
         print(url_and_ip)
     except:
-        print(url)
         1
 def run(urls):
-    pool = Pool(500)
+    pool = Pool(30)
     jobs = [pool.spawn(get_ip,url) for url in urls]
     gevent.wait(jobs)
 if __name__ == "__main__":
