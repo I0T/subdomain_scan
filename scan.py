@@ -21,6 +21,7 @@ def get_ip(url):
         url_and_ip = '%s %s' % (url, ip)
         print(url_and_ip)
     except:
+        print(url)
         1
 def run(urls):
     pool = Pool(500)
@@ -28,6 +29,8 @@ def run(urls):
     gevent.wait(jobs)
 if __name__ == "__main__":
     domain = 'google.com'
-    urls_0 = ['%s'%domain.split('.')[0]]
-    urls = ['%s.%s'%(url_0.strip('\n'),domain) for url_0 in open('dic.txt').readlines()]
+    url_0 = '%s'%(domain.split('.')[0])
+    urls_0 = ['%sadmin'%url_0,'%smanage'%url_0,'%shoutai'%url_0,'%sguanli'%url_0]+\
+             ['%s%s'%(url_0,num) for num in range(1000)]
+    urls = urls_0 + ['%s.%s'%(url_0.strip('\n'),domain) for url_0 in open('dic.txt').readlines()]
     run(urls)
